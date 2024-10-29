@@ -1,0 +1,5 @@
+#devops
+#pytest-cov==4.0.0
+black==22.3.0
+pytest==7.4.0
+pylint==2.15.3
