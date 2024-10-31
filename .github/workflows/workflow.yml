@@ -1,22 +1,48 @@
-name: CI
+name: Rust CI/CD with tests
+
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   pull_request:
-    branches: ["main"]
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      WORKING_DIR: rust_sqlite_cli #change this to the rust project name you are developing.
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: install packages
-        run: make install
-      - name: format
-        run: make format
-      - name: lint
-        run: make lint
-      - name: test
-        run: make test
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+
+    - name: Check
+      run: cargo check
+      working-directory: ${{ env.WORKING_DIR }}
+
+    - name: Format
+      run: cargo fmt
+      working-directory: ${{ env.WORKING_DIR }}
+
+    - name: Test
+      run: cargo test
+      working-directory: ${{ env.WORKING_DIR }}
+
+    - name: Release
+      run: cargo build --release
+      working-directory: ${{ env.WORKING_DIR }}
+
+    - name: Upload Binary Artifact
+      uses: actions/upload-artifact@v4 #v3 is scheduled for deprecation Nov 30 2024 check marketplace
+      with:
+        name: CLI Binary
+        path: ${{ env.WORKING_DIR }}/target/release/rust_sqlite_cli #change the /add to the name of your binary
