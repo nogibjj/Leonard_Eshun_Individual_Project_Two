@@ -1,6 +1,6 @@
 # Data Engineering Individual Project Two 
-[![Rust CI/CD with tests](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/CI.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/CI.yml)
-[![Python CI/CD with tests](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/pythonCI.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/pythonCI.yml)
+[![Rust CI/CD with tests]("https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/rust_workflow.yml/badge.svg")]("https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/rust_workflow.yml")
+[![Python CI/CD with tests](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/python_workflow.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/python_workflow.yml)
 
 
 This repository is created as an assignment from the Data Engineering course, IDS 706. The aim is to create a rust project from an existing python project project best-practice elements. This is in fulfillment of Mini Project Eight and Individual Project 2
