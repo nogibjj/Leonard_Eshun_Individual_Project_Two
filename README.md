@@ -1,9 +1,9 @@
 # Data Engineering Individual Project Two 
 [![Rust CI/CD with tests]("https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/rust_workflow.yml/badge.svg")]("https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/rust_workflow.yml")
-[![Python CI/CD with tests](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/python_workflow.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/python_workflow.yml)
+<!-- [![Python CI/CD with tests](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/python_workflow.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/python_workflow.yml) -->
 
 
-This repository is created as an assignment from the Data Engineering course, IDS 706. The aim is to create a rust project from an existing python project project best-practice elements. This is in fulfillment of Mini Project Eight and Individual Project 2
+This repository is created as an assignment from the Data Engineering course, IDS 706. The aim is to create a rust project from an existing python project project best-practice elements. This is in fulfillment of Mini Project Eight and Individual Project 2.
 
 The requirements are:
 
@@ -19,7 +19,7 @@ The requirements are:
 
 
 ## Use of LLM
-1. Main LLM used was ChatGPT
+1. The Main LLM used was ChatGPT
 1. I used it to convert python code snippets to rust
 1. I used it to explain rust codes
 1. I used it to get the meaning of errors
@@ -29,7 +29,7 @@ The requirements are:
 ## 2. The CLI Commands
 The standard form for a commnad in this scripts' CLI are:   
 ```
-sqlite_etl "command" "arguments"
+rust_sqlite_cli -alias "command" "arguments"
 ```
 
 **The commands are:**   
