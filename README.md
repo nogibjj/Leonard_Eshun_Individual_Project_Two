@@ -1,12 +1,11 @@
-# Data Engineering Individual Project Two and Mini Project Eight
+# Data Engineering Individual Project Two 
 
 [![CI](https://github.com/siliconshells/DE_Mini_Project_One/actions/workflows/workflow.yml/badge.svg)](https://github.com/siliconshells/DE_Mini_Project_One/actions/workflows/workflow.yml)
 
 
-This repository is created as an assignment from the Data Engineering course, IDS 706. The aim is to create a python project template that contains functioning placeholders for key python project best-practice elements.
+This repository is created as an assignment from the Data Engineering course, IDS 706. The aim is to create a rust project from an existing python project project best-practice elements. This is in fulfillment of Mini Project Eight and Individual Project 2
 
 The requirements are:
-
 
 1. Have a functioning CI/CD for setup, lint, test (with a badge on the readme)
 1. Rust source code: The code should comprehensively understand Rust's syntax and unique features.
@@ -97,42 +96,42 @@ sqlite_etl "command" "arguments"
 ## 3. CLI Command Examples
 
 1\. extract:   
-	```
-	sqlite_etl extract "https://data.cityofnewyork.us/resource/c3uy-2p5r.csv?%24limit=200000" "air_quality.csv"
+	```python
+	rust_sqlite_cli -e extract "https://data.cityofnewyork.us/resource/c3uy-2p5r.csv?%24limit=200000" "air_quality.csv"
 	```
 
 2\. transform_and_load:   
-	```
-	sqlite_etl transform_n_load "air_quality.csv" "air_quality.db" '{"air_quality":["air_quality_id","fn_indicator_id","fn_geo_id","time_period","start_date","data_value"]}' '{"indicator":["indicator_id","indicator_name","measure","measure_info"],"geo_data":["geo_id","geo_place_name","geo_type_name"]}' '{"air_quality_id":"INTEGER PRIMARY KEY","indicator_id":"INTEGER PRIMARY KEY","indicator_name":"TEXT","measure":"TEXT","measure_info":"TEXT","geo_type_name":"TEXT","geo_id":"INTEGER PRIMARY KEY","geo_place_name":"TEXT","time_period":"TEXT","start_date":"TEXT","data_value":"REAL","fn_indicator_id":"INTEGER","fn_geo_id":"INTEGER"}' '{"air_quality_id":0,"indicator_id":1,"indicator_name":2,"measure":3,"measure_info":4,"geo_type_name":5,"geo_id":6,"geo_place_name":7,"time_period":8,"start_date":9,"data_value":10,"fn_geo_id":6,"fn_indicator_id":1}'
+	```python
+	rust_sqlite_cli -l transform_n_load "air_quality.csv" "air_quality.db" '{"air_quality":["air_quality_id","fn_indicator_id","fn_geo_id","time_period","start_date","data_value"]}' '{"indicator":["indicator_id","indicator_name","measure","measure_info"],"geo_data":["geo_id","geo_place_name","geo_type_name"]}' '{"air_quality_id":"INTEGER PRIMARY KEY","indicator_id":"INTEGER PRIMARY KEY","indicator_name":"TEXT","measure":"TEXT","measure_info":"TEXT","geo_type_name":"TEXT","geo_id":"INTEGER PRIMARY KEY","geo_place_name":"TEXT","time_period":"TEXT","start_date":"TEXT","data_value":"REAL","fn_indicator_id":"INTEGER","fn_geo_id":"INTEGER"}' '{"air_quality_id":0,"indicator_id":1,"indicator_name":2,"measure":3,"measure_info":4,"geo_type_name":5,"geo_id":6,"geo_place_name":7,"time_period":8,"start_date":9,"data_value":10,"fn_geo_id":6,"fn_indicator_id":1}'
 	```
 
 3\. read_data:   
-	```
+	```python
 	rust_sqlite_cli -q "air_quality.db" geo_data 101
 	```
 
 4\. read_all_data:   
-	```
+	```python
 	rust_sqlite_cli -a "air_quality.db" indicator
 	```
 
 5\. save_data:    
-	```
+	```python
 	rust_sqlite_cli -s "air_quality.db" geo_data "['100000', 'Lancaster', 'UFO']"
 	```
 
 6\. delete_data:    
-	```
+	```python
 	rust_sqlite_cli -d "air_quality.db" geo_data '100000'
 	```
 
 7\. update_data:    
-	```
+	```python
 	rust_sqlite_cli -u "air_quality.db" "geo_data" '{"geo_place_name": "Northeast-Bronx"}' '102' 
 	```
 
 8\. get_table_columns:    
-	```
+	```python
 	sqlite_etl -c "air_quality.db" "air_quality"
 	```
 
