@@ -97,9 +97,9 @@ rust_sqlite_cli -alias "command" "arguments"
 ## 3. CLI Command Examples
 
 1\. extract:   
-	```python
+```python
 	rust_sqlite_cli -e extract "https://data.cityofnewyork.us/resource/c3uy-2p5r.csv?%24limit=200000" "air_quality.csv"
-	```
+```
 
 2\. transform_and_load:   
 	```python
