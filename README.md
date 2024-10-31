@@ -43,6 +43,8 @@ rust_sqlite_cli -alias "command" "arguments"
 1. update_data 
 1. get_table_columns 
 
+## Package Download
+Please download the compiled binary file here: [Binary for distribution](rust_sqlite_cli/target/release/rust_sqlite_cli)    
 
 **Then follow with the relevant argument below, leaving a space between arguments:**   
 
