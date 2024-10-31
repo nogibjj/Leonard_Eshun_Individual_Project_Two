@@ -1,5 +1,5 @@
 # Data Engineering Individual Project Two 
-[![Rust CI/CD with tests]("https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/rust_workflow.yml/badge.svg")]("https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/rust_workflow.yml")
+[![rust]("https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/rust.yml/badge.svg")]("https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/rust.yml")
 <!-- [![Python CI/CD with tests](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/python_workflow.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/python_workflow.yml) -->
 
 
