@@ -44,28 +44,28 @@ pub fn transform_n_load(
     // Create tables
     for (table_name, columns) in new_data_tables.iter() {
         println!("Creating non-lookup table: {}", table_name);
-        log_tests(&format!("Creating non-lookup table: {}", table_name), false, false, false, false);
+        let _ = log_tests(&format!("Creating non-lookup table: {}", table_name), false, false, false, false);
         create_table(&conn, table_name, columns, column_attributes)?;
     }
 
     for (table_name, columns) in new_lookup_tables.iter() {
         println!("Creating lookup table: {}", table_name);
-        log_tests(&format!("Creating lookup table: {}", table_name), false, false, false, false);
+        let _ = log_tests(&format!("Creating lookup table: {}", table_name), false, false, false, false);
         create_table(&conn, table_name, columns, column_attributes)?;
     }
     println!("Tables created.");
-    log_tests("Tables created.", false, false, false, false);
+    let _ = log_tests("Tables created.", false, false, false, false);
 
 
     // Skip the first row (header)
     println!("Skipping the first row...");
-    log_tests("Tables created.", false, false, false, false);
+    let _ = log_tests("Tables created.", false, false, false, false);
 
     let mut rows = reader.records();
     rows.next(); // Skipping header row
 
     println!("Inserting table data...");
-    log_tests("Tables created.", false, false, false, false);
+    let _ = log_tests("Tables created.", false, false, false, false);
 
     for result in rows {
         // let row = result;
@@ -128,7 +128,7 @@ pub fn transform_n_load(
     }
 
     println!("Inserting table data completed");
-    log_tests("Inserting table data completed", false, false, false, false);
+    let _ = log_tests("Inserting table data completed", false, false, false, false);
 
     Ok("Transform and load Successful".to_string())
 }
@@ -166,91 +166,8 @@ pub fn main() -> Result<()> {
 
 #[cfg(test)]
 mod tests{
-    use super::super::util::log_tests;
-    use clap::error::Result;
-    use super::transform_n_load;
-    use std::collections::HashMap;
-    use maplit::hashmap;
-
-
-
-#[test] 
-    fn test_transform_and_load() -> Result<(), Box<dyn std::error::Error>> {
-        log_tests("Transform and Load Test", true, false, false, false);
-
-        let table_map: HashMap<&str, Vec<&str>> = hashmap! {
-            "air_quality" => vec![
-                "air_quality_id",
-                "fn_indicator_id",
-                "fn_geo_id",
-                "time_period",
-                "start_date",
-                "data_value"
-            ]
-        };
-        
-        let column_map: HashMap<&str, usize> = hashmap! {
-            "air_quality_id" => 0,
-            "indicator_id" => 1,
-            "indicator_name" => 2,
-            "measure" => 3,
-            "measure_info" => 4,
-            "geo_type_name" => 5,
-            "geo_id" => 6,
-            "geo_place_name" => 7,
-            "time_period" => 8,
-            "start_date" => 9,
-            "data_value" => 10,
-            "fn_geo_id" => 6,
-            "fn_indicator_id" => 1,
-        };
-    
-        let lookup_map: HashMap<&str, Vec<&str>> = hashmap! {
-            "indicator" => vec![
-                "indicator_id",
-                "indicator_name",
-                "measure",
-                "measure_info"
-            ],
-            "geo_data" => vec![
-                "geo_id",
-                "geo_place_name",
-                "geo_type_name"
-            ]
-        };
-    
-        let column_types: HashMap<&str, &str> = hashmap! {
-            "air_quality_id" => "INTEGER PRIMARY KEY",
-            "indicator_id" => "INTEGER PRIMARY KEY",
-            "indicator_name" => "TEXT",
-            "measure" => "TEXT",
-            "measure_info" => "TEXT",
-            "geo_type_name" => "TEXT",
-            "geo_id" => "INTEGER PRIMARY KEY",
-            "geo_place_name" => "TEXT",
-            "time_period" => "TEXT",
-            "start_date" => "TEXT",
-            "data_value" => "REAL",
-            "fn_indicator_id" => "INTEGER",
-            "fn_geo_id" => "INTEGER"
-        };
-    
-        // Assuming `column_map` is defined somewhere with the correct type
-        // let column_map = hashmap! { /* your column map here */ };
-    
-        transform_n_load(
-            "air_quality.csv",
-            "air_quality.db",
-            &table_map,
-            &lookup_map,
-            &column_types,
-            &column_map.clone(),
-        )?;
-        log_tests("Transform and Load Test Successful", true, false, false,  false);
-
-        Ok(())
-    }
-    
-    
-    // Stub for transform_n_load function
+    // use super::super::util::log_tests;
+    // use super::transform_n_load;
+    // use std::collections::HashMap;
+    // use maplit::hashmap;
 }

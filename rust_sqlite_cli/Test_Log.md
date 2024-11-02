@@ -1,19 +1,14 @@
-Creating non-lookup table: air_quality <br />
-Creating non-lookup table: air_quality <br />
-
-```sql
-Extraction Test
-```
+### Extraction Test ### 
 
 Removing existing CSV file if it exists <br />
 Confirming that CSV file doesn't exist... <br />
 Test Successful <br />
 Extracting data and saving... <br />
 Testing if CSV file exists... <br />
-
-```sql
 Extraction Test Successful
-```
+
+
+### Transform and Load Test ### 
 
 Creating non-lookup table: air_quality <br />
 Creating lookup table: indicator <br />
@@ -22,121 +17,68 @@ Tables created. <br />
 Tables created. <br />
 Tables created. <br />
 Inserting table data completed <br />
-
-```sql
-
-```sql
-Extraction TestTransform and Load Test
-```
-
-
-```
-
-Removing existing CSV file if it exists <br />
-Confirming that CSV file doesn't exist... <br />
-Test Successful <br />
-Extracting data and saving... <br />
-Testing if CSV file exists... <br />
-
-```sql
-Extraction Test Successful
-```
-
-
-```sql
-Transform and Load Test
-```
-
-Creating non-lookup table: air_quality <br />
-Creating lookup table: indicator <br />
-Creating lookup table: geo_data <br />
-Tables created. <br />
-Tables created. <br />
-Tables created. <br />
-Inserting table data completed <br />
-
-```sql
 Transform and Load Test Successful
-```
 
 
-```sql
-Transform and Load Test
-```
+### One Record Reading Test ### 
 
-Creating non-lookup table: air_quality <br />
-Creating lookup table: indicator <br />
-Creating lookup table: geo_data <br />
-Tables created. <br />
-Tables created. <br />
-Tables created. <br />
-Inserting table data completed <br />
-
-```sql
-Transform and Load Test Successful
-```
+Executing query... <br />
+Asserting that row[0][data_value] == 16.4 <br />
+Assert Successful <br />
+One Record Reading Test Successful
 
 
-```sql
-Extraction Test
-```
+### All Records Reading Test ### 
 
-Removing existing CSV file if it exists <br />
-Confirming that CSV file doesn't exist... <br />
-Test Successful <br />
-Extracting data and saving... <br />
-Testing if CSV file exists... <br />
-
-```sql
-Extraction Test Successful
-```
+Asserting that len(rows) == 18016 <br />
+All Records Reading Test Successful
 
 
-```sql
-Transform and Load Test
-```
+### Record Saving Test ### 
 
-Creating non-lookup table: air_quality <br />
-Creating lookup table: indicator <br />
-Creating lookup table: geo_data <br />
-Tables created. <br />
-Tables created. <br />
-Tables created. <br />
-Inserting table data completed <br />
-
-```sql
-Transform and Load Test Successful
-```
+Asserting there's no record in geo_data with ID 100000 <br />
+Executing query... <br />
+Assert Successful <br />
+Saving new record with ID 100000 <br />
+Executing query... <br />
+Executing query... <br />
+Asserting there's now a record in geo_data with ID 100000 <br />
+Executing query... <br />
+Assert Successful <br />
+Record Saving Test Successful
 
 
-```sql
+### Record Update Test ### 
 
-```sql
-Extraction TestTransform and Load Test
-```
+Asserting 'geo_place_name' in geo_data for row ID 100000 is 'Lancaster' <br />
+Executing query... <br />
+Assert Successful <br />
+Updating 'geo_place_name' in geo_data for row ID 100000 to 'Duke' <br />
+Executing query... <br />
+Asserting 'geo_place_name' in geo_data for row ID 100000 is now 'Duke' <br />
+Executing query... <br />
+Assert Successful <br />
+Record Update Test Successful
 
 
-```
+### Record Deletion Test ### 
 
-Removing existing CSV file if it exists <br />
-Confirming that CSV file doesn't exist... <br />
-Test Successful <br />
-Extracting data and saving... <br />
-Creating non-lookup table: air_quality <br />
-Creating lookup table: indicator <br />
-Creating lookup table: geo_data <br />
-Tables created. <br />
-Tables created. <br />
-Tables created. <br />
-Testing if CSV file exists... <br />
+Asserting there's a record in geo_data for row ID 100000 <br />
+Executing query... <br />
+Assert Successful <br />
+Deleting record with ID 100000 <br />
+Executing query... <br />
+Asserting there's no record in geo_data with ID 100000 <br />
+Executing query... <br />
+Assert Successful <br />
+Record Deletion Test Successful
 
-```sql
-Extraction Test Successful
-```
 
-Inserting table data completed <br />
+### Reading All Column Test ### 
 
-```sql
-Transform and Load Test Successful
-```
+Executing query... <br />
+Asserting the air_quality table has six (6) columns <br />
+Assert Successful <br />
+Reading All Column Test Successful
+
 

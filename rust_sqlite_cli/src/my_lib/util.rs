@@ -43,7 +43,6 @@ pub fn log_tests(
         OpenOptions::new().append(true).open(file_path)
     };
 
-    
     // Write to the file based on the flags
     if issql {
         writeln!(file?, "\n```sql\n{}\n```\n", log)?;
