@@ -1,9 +1,6 @@
-use reqwest::blocking::get;
-use serde::Deserialize;
 use serde_json::Value;
 use std::collections::HashMap;
 use std::env;
-use std::fs::File;
 use std::fs::OpenOptions;
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -22,6 +19,8 @@ pub fn db_path(file_name: &str) -> PathBuf {
     data_dir.join(file_name)
 }
 
+
+
 pub fn log_tests(
     log: &str,
     issql: bool,
@@ -34,25 +33,26 @@ pub fn log_tests(
 
     // Open the file in write ("w") or append ("a") mode based on the new_log_file flag
     let file_path = "Test_Log.md";
-    let mut file = if new_log_file {
+    let file = if new_log_file || !Path::new(file_path).exists() {
         OpenOptions::new()
             .write(true)
             .create(true)
             .truncate(true)
-            .open(file_path)?
+            .open(file_path)
     } else {
-        OpenOptions::new().append(true).open(file_path)?
+        OpenOptions::new().append(true).open(file_path)
     };
 
+    
     // Write to the file based on the flags
     if issql {
-        writeln!(file, "\n```sql\n{}\n```\n", log)?;
+        writeln!(file?, "\n```sql\n{}\n```\n", log)?;
     } else if header {
-        writeln!(file, "### {} ### \n", log)?;
+        writeln!(file?, "### {} ### \n", log)?;
     } else if last_in_group {
-        writeln!(file, "{}\n\n", log)?;
+        writeln!(file?, "{}\n\n", log)?;
     } else {
-        writeln!(file, "{} <br />", log)?;
+        writeln!(file?, "{} <br />", log)?;
     }
 
     Ok(())

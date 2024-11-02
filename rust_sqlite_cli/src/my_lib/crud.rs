@@ -98,3 +98,131 @@ pub fn update_data(
     conn.execute(&query, params![data_id])?;
     Ok("Update Successful".to_string())
 }
+
+
+
+#[cfg(test)]
+mod tests{
+
+    use super::*;
+    use rusqlite::{Connection, Result};
+    use super::super::util::log_tests;
+
+    // use rusqlite::{params, Connection, Result};
+
+
+    // #[test]
+
+
+    // // Test read data
+    // #[test]
+    // fn test_read_data() -> Result<()> {
+    //     log_tests("One Record Reading Test", true, false);
+        
+    //     let row = read_data("air_quality.db", "air_quality", 740885)?;
+    //     log_tests("Asserting that row[0][data_value] == 16.4");
+    //     assert_eq!(row[0]["data_value"], 16.4);
+    //     log_tests("Assert Successful");
+        
+    //     log_tests("One Record Reading Test Successful", true);
+        
+    //     Ok(())
+    // }
+
+    // // Test read all data
+    // fn test_read_all_data() -> Result<()> {
+    //     log_tests("All Records Reading Test", true, false);
+
+    //     let rows = read_all_data("air_quality.db", "air_quality")?;
+    //     log_tests("Asserting that len(rows) == 18016");
+    //     assert_eq!(rows.len(), 18016);
+    //     log_tests("All Records Reading Test Successful", true);
+
+    //     Ok(())
+    // }
+
+    // // Test save data
+    // #[test]
+    // fn test_save_data() -> Result<()> {
+    //     log_tests("Record Saving Test", true, false);
+
+    //     log_tests("Asserting there's no record in geo_data with ID 100000");
+    //     let result = read_data("air_quality.db", "geo_data", 100000)?;
+    //     assert!(result.is_none());
+    //     log_tests("Assert Successful");
+
+    //     log_tests("Saving new record with ID 100000");
+    //     save_data("air_quality.db", "geo_data", &["100000", "Lancaster", "UFO"])?;
+
+    //     log_tests("Asserting there's now a record in geo_data with ID 100000");
+    //     let result = read_data("air_quality.db", "geo_data", 100000)?;
+    //     assert_eq!(result.unwrap().len(), 1);
+    //     log_tests("Assert Successful");
+
+    //     log_tests("Record Saving Test Successful", true);
+
+    //     Ok(())
+    // }
+
+    // // Test update data
+    // #[test]
+    // fn test_update_data() -> Result<()> {
+    //     log_tests("Record Update Test", true, false);
+
+    //     log_tests("Asserting 'geo_place_name' in geo_data for row ID 100000 is 'Lancaster'");
+    //     let result = read_data("air_quality.db", "geo_data", 100000)?;
+    //     assert_eq!(result.unwrap()[0]["geo_place_name"], "Lancaster");
+    //     log_tests("Assert Successful");
+
+    //     log_tests("Updating 'geo_place_name' in geo_data for row ID 100000 to 'Duke'");
+    //     update_data("air_quality.db", "geo_data", hashmap!{"geo_place_name" => "Duke"}, 100000)?;
+
+    //     log_tests("Asserting 'geo_place_name' in geo_data for row ID 100000 is now 'Duke'");
+    //     let result = read_data("air_quality.db", "geo_data", 100000)?;
+    //     assert_eq!(result.unwrap()[0]["geo_place_name"], "Duke");
+    //     log_tests("Assert Successful");
+
+    //     log_tests("Record Update Test Successful", true);
+
+    //     Ok(())
+    // }
+
+    // // Test delete data
+    // #[test]
+    // fn test_delete_data() -> Result<()> {
+    //     log_tests("Record Deletion Test", true, false);
+
+    //     log_tests("Asserting there's a record in geo_data for row ID 100000");
+    //     let result = read_data("air_quality.db", "geo_data", 100000)?;
+    //     assert!(result.is_some());
+    //     log_tests("Assert Successful");
+
+    //     log_tests("Deleting record with ID 100000");
+    //     delete_data("air_quality.db", "geo_data", 100000)?;
+
+    //     log_tests("Asserting there's no record in geo_data with ID 100000");
+    //     let result = read_data("air_quality.db", "geo_data", 100000)?;
+    //     assert!(result.is_none());
+    //     log_tests("Assert Successful");
+
+    //     log_tests("Record Deletion Test Successful", true);
+
+    //     Ok(())
+    // }
+
+    // // Test read all column names
+    // #[test]
+    // fn test_get_table_columns() -> Result<()> {
+    //     log_tests("Reading All Column Test", true, false);
+
+    //     let columns = get_table_columns("air_quality.db", "air_quality")?;
+    //     log_tests("Asserting the air_quality table has six (6) columns");
+    //     assert_eq!(columns.len(), 6);
+    //     log_tests("Assert Successful");
+
+    //     log_tests("Reading All Column Test Successful", true);
+
+    //     Ok(())
+    // }   
+
+}
