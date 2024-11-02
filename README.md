@@ -13,10 +13,10 @@ The requirements are:
 1. Use of LLM: In your README, explain how you utilized an LLM in your coding process.
 1. SQLite Database: Include a SQLite database and demonstrate CRUD (Create, Read, Update, Delete) operations.
 1. Optimized Rust Binary: Include a process that generates an optimized Rust binary as a Gitlab Actions artifact that can be downloaded.
+1. Highlight improvements in speed and resource usage by Rust relative to Python.
 1. README.md: A file that clearly explains what the project does, its dependencies, how to run the program, and how Gitlab Copilot was used.
 1. Github/Gitlab Actions: A workflow file that tests, builds, and lints your Rust code.
 1. Video Demo: A YouTube link in README.md showing a clear, concise walkthrough and demonstration of your CLI binary.
-1. Highlight improvements in speed and resource usage
 
 
 ## Use of LLM
@@ -25,6 +25,8 @@ The requirements are:
 1. I used it to explain rust codes
 1. I used it to get the meaning of errors
 
+## Comparing speed between Rust and Python
+The idea is to let the two languages do the same task with the least external influence on speed. For that reason, I won't use anything that involves network access, like data extraction. They'll both read the same amount of data from the same csv file and save the data to sqlite files residing in the same parent folder on the same storage and we see how long each language does it. A very similar code was used (Python code converted to Rust).
 
 
 ## 2. The CLI Commands
@@ -100,12 +102,12 @@ Please download the compiled binary file here: [Binary for distribution](rust_sq
 
 1\. extract:   
 ```python
-rust_sqlite_cli -e extract "https://data.cityofnewyork.us/resource/c3uy-2p5r.csv" "air_quality.csv"
+rust_sqlite_cli -e "https://data.cityofnewyork.us/resource/c3uy-2p5r.csv" "air_quality.csv"
 ```
 
 2\. transform_and_load:   
 ```python
-rust_sqlite_cli -l transform_n_load "air_quality.csv" "air_quality.db" '{"air_quality":["air_quality_id","fn_indicator_id","fn_geo_id","time_period","start_date","data_value"]}' '{"indicator":["indicator_id","indicator_name","measure","measure_info"],"geo_data":["geo_id","geo_place_name","geo_type_name"]}' '{"air_quality_id":"INTEGER PRIMARY KEY","indicator_id":"INTEGER PRIMARY KEY","indicator_name":"TEXT","measure":"TEXT","measure_info":"TEXT","geo_type_name":"TEXT","geo_id":"INTEGER PRIMARY KEY","geo_place_name":"TEXT","time_period":"TEXT","start_date":"TEXT","data_value":"REAL","fn_indicator_id":"INTEGER","fn_geo_id":"INTEGER"}' '{"air_quality_id":0,"indicator_id":1,"indicator_name":2,"measure":3,"measure_info":4,"geo_type_name":5,"geo_id":6,"geo_place_name":7,"time_period":8,"start_date":9,"data_value":10,"fn_geo_id":6,"fn_indicator_id":1}'
+rust_sqlite_cli -l "air_quality.csv" "air_quality.db" '{"air_quality":["air_quality_id","fn_indicator_id","fn_geo_id","time_period","start_date","data_value"]}' '{"indicator":["indicator_id","indicator_name","measure","measure_info"],"geo_data":["geo_id","geo_place_name","geo_type_name"]}' '{"air_quality_id":"INTEGER PRIMARY KEY","indicator_id":"INTEGER PRIMARY KEY","indicator_name":"TEXT","measure":"TEXT","measure_info":"TEXT","geo_type_name":"TEXT","geo_id":"INTEGER PRIMARY KEY","geo_place_name":"TEXT","time_period":"TEXT","start_date":"TEXT","data_value":"REAL","fn_indicator_id":"INTEGER","fn_geo_id":"INTEGER"}' '{"air_quality_id":0,"indicator_id":1,"indicator_name":2,"measure":3,"measure_info":4,"geo_type_name":5,"geo_id":6,"geo_place_name":7,"time_period":8,"start_date":9,"data_value":10,"fn_geo_id":6,"fn_indicator_id":1}'
 ```
 
 3\. read_data:   
