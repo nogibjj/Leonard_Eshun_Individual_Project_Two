@@ -1,7 +1,7 @@
 # Data Engineering Individual Project Two 
-[![Rust CI/CD](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/workflow.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/workflow.yml)
+[![Rust CI/CD](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/rust_workflow.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/rust_workflow.yml)
 
-<!-- [![Python CI/CD with tests](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/python_workflow.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/python_workflow.yml) -->
+[![Python CI/CD](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/rust_workflow.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/rust_workflow.yml)
 
 
 This repository is created as an assignment from the Data Engineering course, IDS 706. The aim is to create a rust project from an existing python project project best-practice elements. This is in fulfillment of Mini Project Eight and Individual Project 2.
@@ -38,7 +38,7 @@ I'll say ChatGPT was very effective in converting the code from Python to Rust. 
 
 
 ## 2. Comparing speed between Rust and Python
-The idea is to let the two languages do the same task with the least external influence on speed. For that reason, I won't use anything that involves network access, like data extraction. They'll both read the same amount of data from the same csv file and save the data to sqlite files residing in the same parent folder on the same storage and we see how long each language does it. A very similar code was used (Python code converted to Rust).
+The idea is to let the two languages do the same task with the least external influence on speed. For that reason, I won't use anything that involves network access, like data extraction. They'll both read the same amount of data from the same csv file and save the data to separate sqlite files residing in the same parent folder on the same storage and we see how long each language does it. A very similar code was used (Python code converted to Rust).
 
 
 
@@ -60,6 +60,7 @@ rust_sqlite_cli -alias "command" "arguments"
 
 ## 5. Package Download
 Please download the compiled binary (`rust_sqlite_cli`) file here: [Binary for distribution](rust_sqlite_cli/target/release/rust_sqlite_cli)    
+The CI/CD action results can be found under the Github _Actions_ page.   
 
 
 

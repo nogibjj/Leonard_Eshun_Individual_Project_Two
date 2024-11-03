@@ -4,7 +4,7 @@ Transform the extracted data
 
 import sqlite3
 import csv
-from my_lib.util import log_tests
+from my_lib.util import log_tests, db_path
 
 
 def create_table(cursor, table, columns, column_attributes):
@@ -25,9 +25,10 @@ def transform_n_load(
     """ "Transforms and Loads data into the local SQLite3 database"""
 
     # load the data from the csv
-    reader = csv.reader(open("../../" + local_dataset, newline=""), delimiter=",")
 
-    conn = sqlite3.connect("../../" + database_name)
+    reader = csv.reader(open(db_path + "rust_sqlite_cli/" + local_dataset, newline=""), delimiter=",")
+
+    conn = sqlite3.connect(db_path + "python_code/" + database_name)
 
     c = conn.cursor()
     # Create tables
