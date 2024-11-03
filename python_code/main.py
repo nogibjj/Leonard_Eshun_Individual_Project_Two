@@ -1,8 +1,8 @@
+import ast
 import sys
 import argparse
 from my_lib.transform import transform_n_load
 
-import ast
 
 
 def handle_arguments(args):
