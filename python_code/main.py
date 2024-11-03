@@ -68,12 +68,14 @@ def main():
             ast.literal_eval(args.column_map),
             )
         end = datetime.now()
-        
+                
         log_tests("The Python Speed test took: {} seconds to complete.".format((end - start).total_seconds()), file_name="speed_test_data/Speed_Test_Result.md")
         log_tests("Python speed test ended at server date and time: {}".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S")), file_name="speed_test_data/Speed_Test_Result.md")
+        log_tests("---------------------------------------------------------", file_name="speed_test_data/Speed_Test_Result.md")
 
         print(f"Python took: {(end - start).total_seconds()} seconds to complete the load and save operation.")
         print("End of python speed test. The result can be found in the test_speed folder.")
+
     else:
         print(f"Unknown function: {args.action}")
 

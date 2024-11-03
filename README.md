@@ -36,9 +36,14 @@ I'll say ChatGPT was very effective in converting the code from Python to Rust. 
 
 
 ## 2. Comparing speed between Rust and Python
-The idea is to let the two languages do the same task with the least external influence on speed. For that reason, I won't use anything that involves network access, like data extraction. They'll both read the same amount of data from the same csv file and save the data to separate sqlite files residing in the same parent folder on the same storage and we see how long each language does it. A very similar code was used (Python code converted to Rust).
+The idea is to let the two languages do the same task with the least external influence on speed. For that reason, I won't use anything that involves network access, like data extraction. They'll both read the same amount of data from the same csv file and save the data to separate sqlite files residing in the same parent folder on the same storage and we see how long each language does it. A very similar code was used (Python code converted to Rust). All related information can be found in the `speed_test_data` folder.
 
+The test functions were run three times:
+![Test Ouput](assets/Speed_test_runs.png)
 
+The result can be found [here](speed_test_data/Speed_Test_Result.md)
+
+It appears from the result of this test that Rust is slightly faster than Python by 0.028997 seconds on the average.
 
 ## 3. Log of successful operations
 `Cargo test` runs the tests in parallel by default and when cargo `test -- --test-threads 1` forces sequential run, the order is determined by the alphanumeric order of the test names. It's best practice to run unit tests in isolation, but I needed a particular sequence (extract, transform, load, Read, Create, Update, Delete), thus, I setup an integration test instead of unit tests, at `tests/integration_test.rs`. To control the sequence, I named the tests "test_ordernumber..." and used `test -- --test-threads 1 --nocapture`. This is to avoid a situation where it tries to test reading data when the data isn't loaded. The `--nocapture` option was used because by defualt Rust test programs hide the stdout of successful tests in order for the test output to be tidy and the side effect was that nothing was being written to my _Test_Log.md_ file. `--nocapture` prevents it from hiding the stdout. The test operation saved its steps to a log file to show the success of the operations. 
@@ -46,7 +51,7 @@ The idea is to let the two languages do the same task with the least external in
 [Please find the file here](Test_Log.md)
 
 The test output is shown below:
-![Test Ouput](Test_Output.png)
+![Test Ouput](assets/Test_Output.png)
 
 
 ## 4. The CLI Commands

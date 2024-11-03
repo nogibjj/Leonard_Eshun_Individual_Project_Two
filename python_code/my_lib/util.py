@@ -2,7 +2,7 @@ import os.path
 
 def log_tests(log, issql=False, header=False, last_in_group=False, new_log_file=False, file_name = None):
     log = log.strip()
-    if file_name == None:
+    if file_name is None:
         file_name = db_path + "python_code/Test_Log.md"
     else:
         file_name = db_path + file_name
