@@ -33,7 +33,7 @@ jobs:
       working-directory: ${{ env.WORKING_DIR }}
 
     - name: Test
-      run: cargo test
+      run: ccargo test -- --test-threads 1 --nocapture
       working-directory: ${{ env.WORKING_DIR }}
 
     - name: Release

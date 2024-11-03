@@ -24,16 +24,33 @@ The requirements are:
 1. I used it to convert python code snippets to rust
 1. I used it to explain rust codes
 1. I used it to get the meaning of errors
+I'll say ChatGPT was very effective in converting the code from Python to Rust. I had to make some changes but the LLM was very good, reducing the programming time tremendously.
+
 
 ## Comparing speed between Rust and Python
 The idea is to let the two languages do the same task with the least external influence on speed. For that reason, I won't use anything that involves network access, like data extraction. They'll both read the same amount of data from the same csv file and save the data to sqlite files residing in the same parent folder on the same storage and we see how long each language does it. A very similar code was used (Python code converted to Rust).
 
 
-## 2. The CLI Commands
+
+## Log of successful operations
+`Cargo test` runs the tests in parallel by default and when cargo `test -- --test-threads 1` forces sequential run, the order is determined by the alphanumeric order of the test names. It's best practice to run unit tests in isolation, but I needed a particular sequence (extract, transform, load, Read, Create, Update, Delete), thus, I setup an integration test instead of unit tests, at `tests/integration_test.rs`. To control the sequence, I named the tests "test_ordernumber..." and used `test -- --test-threads 1 --nocapture`. This is to avoid a situation where it tries to test reading data when the data isn't loaded. The `--nocapture` option was used because by defualt Rust test programs hide the stdout of successful tests in order for the test output to be tidy and the side effect was that nothing was being written to my _Test_Log.md_ file. `--nocapture` prevents it from hiding the stdout. The test operation saved its steps to a log file to show the success of the operations. 
+
+[Please find the file here](Test_Log.md)
+
+The test output is shown below:
+![Test Ouput](Test_Output.png)
+
+
+## The CLI Commands
 The standard form for a commnad in this scripts' CLI are:   
 ```
 rust_sqlite_cli -alias "command" "arguments"
 ```
+
+
+## Package Download
+Please download the compiled binary file here: [Binary for distribution](rust_sqlite_cli/target/release/rust_sqlite_cli)    
+
 
 **The commands are:**   
 1. extract 
@@ -44,9 +61,6 @@ rust_sqlite_cli -alias "command" "arguments"
 1. delete_data 
 1. update_data 
 1. get_table_columns 
-
-## Package Download
-Please download the compiled binary file here: [Binary for distribution](rust_sqlite_cli/target/release/rust_sqlite_cli)    
 
 **Then follow with the relevant argument below, leaving a space between arguments:**   
 
@@ -231,3 +245,11 @@ sqlite_etl -c "air_quality.db" "air_quality"
 	The parameters are:
 	- database_name : The name of the SQLite database.
 	- table_name : The name of the table in the SQLite database.   
+
+
+## References  
+\- [Integration Testing](https://doc.rust-lang.org/rust-by-example/testing/integration_testing.html)   
+\- [Sequential Testing](https://users.rust-lang.org/t/run-tests-sequentially/16397)   
+\- [Capture of stdout](https://stackoverflow.com/questions/25106554/why-doesnt-println-work-in-rust-unit-tests)   
+\- [Integration Testing](https://doc.rust-lang.org/rust-by-example/testing/integration_testing.html)   
+
