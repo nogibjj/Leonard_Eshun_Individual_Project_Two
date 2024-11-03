@@ -1,13 +1,12 @@
 # Data Engineering Individual Project Two 
-[![CI](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/workflow.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/workflow.yml)
+[![Rust CI/CD](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/workflow.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/workflow.yml)
 
 <!-- [![Python CI/CD with tests](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/python_workflow.yml/badge.svg)](https://github.com/nogibjj/Leonard_Eshun_Individual_Project_Two/actions/workflows/python_workflow.yml) -->
 
 
 This repository is created as an assignment from the Data Engineering course, IDS 706. The aim is to create a rust project from an existing python project project best-practice elements. This is in fulfillment of Mini Project Eight and Individual Project 2.
 
-The requirements are:
-
+**The requirements are:**
 1. Have a functioning CI/CD for setup, lint, test (with a badge on the readme)
 1. Rust source code: The code should comprehensively understand Rust's syntax and unique features.
 1. Use of LLM: In your README, explain how you utilized an LLM in your coding process.
@@ -18,21 +17,32 @@ The requirements are:
 1. Github/Gitlab Actions: A workflow file that tests, builds, and lints your Rust code.
 1. Video Demo: A YouTube link in README.md showing a clear, concise walkthrough and demonstration of your CLI binary.
 
+## Table of Content
+1. Use of LLM
+1. Comparing speed between Rust and Python
+1. Log of successful operations
+1. The CLI Commands
+1. Package Download
+1. CLI Command Examples
+1. The functions behind the CLI commands
+1. Project dependencies
+1. References
 
-## Use of LLM
+
+## 1. Use of LLM
 1. The Main LLM used was ChatGPT
 1. I used it to convert python code snippets to rust
 1. I used it to explain rust codes
-1. I used it to get the meaning of errors
+1. I used it to get the meaning of errors    
 I'll say ChatGPT was very effective in converting the code from Python to Rust. I had to make some changes but the LLM was very good, reducing the programming time tremendously.
 
 
-## Comparing speed between Rust and Python
+## 2. Comparing speed between Rust and Python
 The idea is to let the two languages do the same task with the least external influence on speed. For that reason, I won't use anything that involves network access, like data extraction. They'll both read the same amount of data from the same csv file and save the data to sqlite files residing in the same parent folder on the same storage and we see how long each language does it. A very similar code was used (Python code converted to Rust).
 
 
 
-## Log of successful operations
+## 3. Log of successful operations
 `Cargo test` runs the tests in parallel by default and when cargo `test -- --test-threads 1` forces sequential run, the order is determined by the alphanumeric order of the test names. It's best practice to run unit tests in isolation, but I needed a particular sequence (extract, transform, load, Read, Create, Update, Delete), thus, I setup an integration test instead of unit tests, at `tests/integration_test.rs`. To control the sequence, I named the tests "test_ordernumber..." and used `test -- --test-threads 1 --nocapture`. This is to avoid a situation where it tries to test reading data when the data isn't loaded. The `--nocapture` option was used because by defualt Rust test programs hide the stdout of successful tests in order for the test output to be tidy and the side effect was that nothing was being written to my _Test_Log.md_ file. `--nocapture` prevents it from hiding the stdout. The test operation saved its steps to a log file to show the success of the operations. 
 
 [Please find the file here](Test_Log.md)
@@ -41,15 +51,16 @@ The test output is shown below:
 ![Test Ouput](Test_Output.png)
 
 
-## The CLI Commands
+## 4. The CLI Commands
 The standard form for a commnad in this scripts' CLI are:   
 ```
 rust_sqlite_cli -alias "command" "arguments"
 ```
 
 
-## Package Download
-Please download the compiled binary file here: [Binary for distribution](rust_sqlite_cli/target/release/rust_sqlite_cli)    
+## 5. Package Download
+Please download the compiled binary (`rust_sqlite_cli`) file here: [Binary for distribution](rust_sqlite_cli/target/release/rust_sqlite_cli)    
+
 
 
 **The commands are:**   
@@ -112,7 +123,7 @@ Please download the compiled binary file here: [Binary for distribution](rust_sq
 >When adding arguments like lists or dictionary, please ensure that the outer quotes are double quotes and the individual inner items have single quotes (or vice-versa) so it knows where the list starts and ends.
 
 
-## 3. CLI Command Examples
+## 6. CLI Command Examples
 
 1\. extract:   
 ```python
@@ -154,7 +165,7 @@ rust_sqlite_cli -u "air_quality.db" "geo_data" '{"geo_place_name": "Northeast-Br
 sqlite_etl -c "air_quality.db" "air_quality"
 ```
 
-## 4. The functions behind the CLI commands
+## 7. The functions behind the CLI commands
 
 1. **extract** to extract the read an external csv file via its url and save to file in the /data folder using the name you give it. The database will be created if it doesn't exist.
 	```python
@@ -246,10 +257,24 @@ sqlite_etl -c "air_quality.db" "air_quality"
 	- database_name : The name of the SQLite database.
 	- table_name : The name of the table in the SQLite database.   
 
+## 8. Project dependencies  
+**Rust**
+1. reqwest (version 0.11)
+1. clap (version 4.5.20)
+1. csv (1.3.0)
+1. rusqlite (0.32.1)
+1. serde (1.0.214)
+1. serde_json (1.0.132)
+1. maplit (1.0.2)
 
-## References  
+**Python**
+1. black (version 22.3.0)
+1. pytest (version 7.4.0)
+1. ruff (version 0.6.5)
+
+
+## 9. References  
 \- [Integration Testing](https://doc.rust-lang.org/rust-by-example/testing/integration_testing.html)   
 \- [Sequential Testing](https://users.rust-lang.org/t/run-tests-sequentially/16397)   
 \- [Capture of stdout](https://stackoverflow.com/questions/25106554/why-doesnt-println-work-in-rust-unit-tests)   
-\- [Integration Testing](https://doc.rust-lang.org/rust-by-example/testing/integration_testing.html)   
 
