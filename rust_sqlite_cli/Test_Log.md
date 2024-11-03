@@ -10,13 +10,16 @@ Extraction Test Successful
 
 ### Transform and Load Test ### 
 
+Removing existing sqlite file if it exists <br />
+Confirming that sqlite file doesn't exist... <br />
 Creating non-lookup table: air_quality <br />
-Creating lookup table: indicator <br />
 Creating lookup table: geo_data <br />
+Creating lookup table: indicator <br />
 Tables created. <br />
 Tables created. <br />
 Tables created. <br />
 Inserting table data completed <br />
+Testing if sqlite file exists... <br />
 Transform and Load Test Successful
 
 
@@ -82,38 +85,3 @@ Assert Successful <br />
 Reading All Column Test Successful
 
 
-Creating non-lookup table: air_quality <br />
-Creating lookup table: geo_data <br />
-Creating lookup table: indicator <br />
-Tables created. <br />
-Tables created. <br />
-Tables created. <br />
-Inserting table data completed <br />
-Creating non-lookup table: air_quality <br />
-Creating lookup table: geo_data <br />
-Creating lookup table: indicator <br />
-Tables created. <br />
-Tables created. <br />
-Tables created. <br />
-Inserting table data completed <br />
-Creating non-lookup table: air_quality <br />
-Creating lookup table: geo_data <br />
-Creating lookup table: indicator <br />
-Tables created. <br />
-Tables created. <br />
-Tables created. <br />
-Inserting table data completed <br />
-Creating non-lookup table: air_quality <br />
-Creating lookup table: indicator <br />
-Creating lookup table: geo_data <br />
-Tables created. <br />
-Tables created. <br />
-Tables created. <br />
-Inserting table data completed <br />
-Creating non-lookup table: air_quality <br />
-Creating lookup table: geo_data <br />
-Creating lookup table: indicator <br />
-Tables created. <br />
-Tables created. <br />
-Tables created. <br />
-Inserting table data completed <br />

@@ -14,14 +14,14 @@ use rust_sqlite_cli::my_lib::crud::{delete_data, save_data, read_all_data, read_
 fn test_1_extract() -> clap::error::Result<()> {
     let _ = log_tests("Extraction Test", false, true,  false, true);
     let _ = log_tests("Removing existing CSV file if it exists", false, false,  false, false);
-
+    //delete the file if it's there
     let file_path = "air_quality.csv";
     if fs::metadata(file_path).is_ok() {
         fs::remove_file(file_path)?;
     }
 
     let _ = log_tests("Confirming that CSV file doesn't exist...", false, false,  false, false);
-    assert!(!fs::metadata("population_bar.png").is_ok());
+    assert!(!fs::metadata(file_path).is_ok());
     let _ = log_tests("Test Successful", false, false,  false, false);
 
     let _ = log_tests("Extracting data and saving...", false, false,  false, false);
@@ -98,6 +98,14 @@ fn test_2_transform_and_load() -> Result<(), Box<dyn std::error::Error>> {
         "fn_geo_id" => "INTEGER"
     };
 
+    let _ = log_tests("Removing existing sqlite file if it exists", false, false,  false, false);
+    //delete the file if it's there
+    if fs::metadata("air_quality.db").is_ok() {
+        fs::remove_file("air_quality.db")?;
+    }
+    let _ = log_tests("Confirming that sqlite file doesn't exist...", false, false,  false, false);
+
+    assert!(!fs::metadata("air_quality.db").is_ok());
 
     transform_n_load(
         "air_quality.csv",
@@ -107,6 +115,10 @@ fn test_2_transform_and_load() -> Result<(), Box<dyn std::error::Error>> {
         &column_types,
         &column_map.clone(),
     )?;
+
+    let _ = log_tests("Testing if sqlite file exists...", false, false,  false, false);
+    assert!(fs::metadata("air_quality.db").is_ok());
+
     let _ = log_tests("Transform and Load Test Successful", false, false, true,  false);
 
     Ok(())

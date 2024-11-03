@@ -23,6 +23,7 @@ This repository is created as an assignment from the Data Engineering course, ID
 1. Package Download
 1. CLI Command Examples
 1. The functions behind the CLI commands
+1. A video describing the code
 1. Project dependencies
 1. References
 
@@ -261,7 +262,12 @@ sqlite_etl -c "air_quality.db" "air_quality"
 	- database_name : The name of the SQLite database.
 	- table_name : The name of the table in the SQLite database.   
 
-## 8. Project dependencies  
+
+## 8. A video describing the code can be found here
+[![Project Code Description](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DV8W3qpIdc_k)](https://www.youtube.com/watch?v=V8W3qpIdc_k)
+
+
+## 9. Project dependencies  
 **Rust**
 1. reqwest (version 0.11)
 1. clap (version 4.5.20)
@@ -278,7 +284,7 @@ sqlite_etl -c "air_quality.db" "air_quality"
 1. ruff (version 0.6.5)
 
 
-## 9. References  
+## 10. References  
 \- [Integration Testing](https://doc.rust-lang.org/rust-by-example/testing/integration_testing.html)   
 \- [Sequential Testing](https://users.rust-lang.org/t/run-tests-sequentially/16397)   
 \- [Capture of stdout](https://stackoverflow.com/questions/25106554/why-doesnt-println-work-in-rust-unit-tests)   
