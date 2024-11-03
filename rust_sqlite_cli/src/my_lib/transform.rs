@@ -133,33 +133,6 @@ pub fn transform_n_load(
     Ok("Transform and load Successful".to_string())
 }
 
-pub fn main() -> Result<()> {
-    let local_dataset = "data.csv";
-    let database_name = "example.db";
-
-    // Example mappings and configurations for columns and tables
-    let new_data_tables: HashMap<&str, Vec<&str>> = HashMap::new(); // Populate as needed
-    let new_lookup_tables: HashMap<&str, Vec<&str>> = HashMap::new(); // Populate as needed
-    let column_attributes: HashMap<&str, &str> = HashMap::new(); // Define column attributes
-    let column_map: HashMap<&str, usize> = HashMap::new(); // Define column indices
-
-    let result = transform_n_load(
-        local_dataset,
-        database_name,
-        &new_data_tables,
-        &new_lookup_tables,
-        &column_attributes,
-        &column_map,
-    );
-
-    match result {
-        Ok(message) => println!("{}", message),
-        Err(e) => eprintln!("Error: {}", e),
-    }
-
-    Ok(())
-}
-
 
 
 
