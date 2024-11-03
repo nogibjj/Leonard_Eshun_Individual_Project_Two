@@ -21,5 +21,5 @@ jobs:
         run: make lint
       - name: Test
         run: make test
-      - name: Transfor and Load
-        run: make transform_and_load
+      - name: Do Python Speed Test
+        run: make test_speed

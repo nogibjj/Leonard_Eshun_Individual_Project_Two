@@ -2,7 +2,8 @@ import ast
 import sys
 import argparse
 from my_lib.transform import transform_n_load
-
+from datetime import datetime
+from my_lib.util import log_tests
 
 
 def handle_arguments(args):
@@ -12,6 +13,7 @@ def handle_arguments(args):
         "Functions",
         choices=[
             "transform_n_load",
+            "speed_test"
         ],
     )
 
@@ -20,6 +22,11 @@ def handle_arguments(args):
     if args.Functions == "transform_n_load":
         parser.add_argument("local_dataset")
         parser.add_argument("database_name")
+        parser.add_argument("new_data_tables")
+        parser.add_argument("new_lookup_tables")
+        parser.add_argument("column_attributes")
+        parser.add_argument("column_map")
+    elif args.Functions == "speed_test":
         parser.add_argument("new_data_tables")
         parser.add_argument("new_lookup_tables")
         parser.add_argument("column_attributes")
@@ -47,6 +54,26 @@ def main():
                 ast.literal_eval(args.column_map),
             )
         )
+    elif args.Functions == "speed_test":
+        print("Starting python speed test...")
+        log_tests(f"Python speed test started at server date and time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}", file_name="speed_test_data/Speed_Test_Result.md")
+
+        start = datetime.now()
+        transform_n_load(
+            'air_quality.csv',
+            'python_air_quality.db',
+            ast.literal_eval(args.new_data_tables),
+            ast.literal_eval(args.new_lookup_tables),
+            ast.literal_eval(args.column_attributes),
+            ast.literal_eval(args.column_map),
+            )
+        end = datetime.now()
+        
+        log_tests(f"The Python Speed test took: {(end - start).total_seconds()} seconds to complete.", file_name="speed_test_data/Speed_Test_Result.md")
+        log_tests(f"Python speed test ended at server date and time: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}", file_name="speed_test_data/Speed_Test_Result.md")
+
+        print(f"Python took: {(end - start).total_seconds()} seconds to complete the load and save operation.")
+        print("End of python speed test. The result can be found in the test_speed folder.")
     else:
         print(f"Unknown function: {args.action}")
 

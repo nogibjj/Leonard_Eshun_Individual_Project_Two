@@ -45,3 +45,7 @@ jobs:
       with:
         name: CLI Binary
         path: ${{ env.WORKING_DIR }}/target/release/rust_sqlite_cli #change the /add to the name of your binary
+    
+    - name: Test Speed
+      run: target/release/rust_sqlite_cli -t
+      working-directory: ${{ env.WORKING_DIR }}

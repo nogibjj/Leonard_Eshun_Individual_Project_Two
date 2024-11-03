@@ -4,6 +4,12 @@ use std::env;
 use std::fs::OpenOptions;
 use std::io::Write;
 use std::path::{Path, PathBuf};
+use chrono::Local;
+
+pub fn get_server_time() -> String {
+    let now = Local::now();
+    format!("{}", now.format("%Y-%m-%d %H:%M:%S")).to_string()
+} 
 
 // Function to get the base directory
 fn base_dir() -> PathBuf {
@@ -13,46 +19,46 @@ fn base_dir() -> PathBuf {
     base_dir
 }
 
+// Function to construct the database path (similar to db_path in Python)
+pub fn db_path(file_name: &str) -> PathBuf {
+    let data_dir = base_dir().join("../data/");
+    data_dir.join(file_name)
+}
+
+
 fn general_log(file_name: &str, log: &str,
     issql: bool,
     header: bool,
     last_in_group: bool,
     new_log_file: bool,
 ) -> std::io::Result<()> {
-        // Remove any leading or trailing whitespace
-        let log = log.trim();
-    
-        // Open the file in write ("w") or append ("a") mode based on the new_log_file flag
-        let file_path = file_name;
-        let file = if new_log_file || !Path::new(file_path).exists() {
-            OpenOptions::new()
-                .write(true)
-                .create(true)
-                .truncate(true)
-                .open(file_path)
-        } else {
-            OpenOptions::new().append(true).open(file_path)
-        };
-    
-        // Write to the file based on the flags
-        if issql {
-            writeln!(file?, "\n```sql\n{}\n```\n", log)?;
-        } else if header {
-            writeln!(file?, "### {} ### \n", log)?;
-        } else if last_in_group {
-            writeln!(file?, "{}\n\n", log)?;
-        } else {
-            writeln!(file?, "{} <br />", log)?;
-        }
-    
-        Ok(())
+    // Remove any leading or trailing whitespace
+    let log = log.trim();
+
+    // Open the file in write ("w") or append ("a") mode based on the new_log_file flag
+    let file_path = file_name;
+    let file = if new_log_file || !Path::new(file_path).exists() {
+        OpenOptions::new()
+            .write(true)
+            .create(true)
+            .truncate(true)
+            .open(file_path)
+    } else {
+        OpenOptions::new().append(true).open(file_path)
+    };
+
+    // Write to the file based on the flags
+    if issql {
+        writeln!(file?, "\n```sql\n{}\n```\n", log)?;
+    } else if header {
+        writeln!(file?, "### {} ### \n", log)?;
+    } else if last_in_group {
+        writeln!(file?, "{}\n\n", log)?;
+    } else {
+        writeln!(file?, "{} <br />", log)?;
     }
 
-
-// Function to construct the database path (similar to db_path in Python)
-pub fn db_path(file_name: &str) -> PathBuf {
-    let data_dir = base_dir().join("../data/");
-    data_dir.join(file_name)
+    Ok(())
 }
 
 
@@ -68,13 +74,11 @@ pub fn log_tests(
 
 pub fn log_speed_tests(
     log: &str,
-    issql: bool,
-    header: bool,
-    last_in_group: bool,
-    new_log_file: bool,
 ) -> std::io::Result<()> {
-    general_log("Speed_Test_Log.md", log, issql, header, last_in_group, new_log_file)
+    general_log("../speed_test_data/Speed_Test_Result.md", log,  false, false,  false, false)
 }
+
+
 
 pub fn parse_json_to_map_vector(input: &str) -> HashMap<String, Vec<String>> {
     // Parse the JSON string to a serde_json::Value

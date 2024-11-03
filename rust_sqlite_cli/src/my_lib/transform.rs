@@ -40,7 +40,7 @@ pub fn transform_n_load(
 
     // Connect to the SQLite database
     let conn = Connection::open(database_name)?;
-
+    println!("{:?}",database_name);
     // Create tables
     for (table_name, columns) in new_data_tables.iter() {
         println!("Creating non-lookup table: {}", table_name);

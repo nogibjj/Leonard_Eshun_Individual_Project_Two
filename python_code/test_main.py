@@ -25,7 +25,7 @@ def test_transform_and_load():
     log_tests("Transform and Load Test", header=True)
     transform_n_load(
         local_dataset="air_quality.csv",
-        database_name="air_quality.db",
+        database_name="python_air_quality.db",
         new_data_tables={
             "air_quality": [
                 "air_quality_id",

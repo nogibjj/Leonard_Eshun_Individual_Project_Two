@@ -26,9 +26,9 @@ def transform_n_load(
 
     # load the data from the csv
 
-    reader = csv.reader(open(db_path + "rust_sqlite_cli/" + local_dataset, newline=""), delimiter=",")
+    reader = csv.reader(open(db_path + "speed_test_data/" + local_dataset, newline=""), delimiter=",")
 
-    conn = sqlite3.connect(db_path + "python_code/" + database_name)
+    conn = sqlite3.connect(db_path + "speed_test_data/" + database_name)
 
     c = conn.cursor()
     # Create tables

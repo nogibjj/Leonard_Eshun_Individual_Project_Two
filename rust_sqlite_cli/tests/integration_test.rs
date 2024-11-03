@@ -98,8 +98,6 @@ fn test_2_transform_and_load() -> Result<(), Box<dyn std::error::Error>> {
         "fn_geo_id" => "INTEGER"
     };
 
-    // Assuming `column_map` is defined somewhere with the correct type
-    // let column_map = hashmap! { /* your column map here */ };
 
     transform_n_load(
         "air_quality.csv",
