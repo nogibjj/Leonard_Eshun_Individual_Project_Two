@@ -82,3 +82,38 @@ Assert Successful <br />
 Reading All Column Test Successful
 
 
+Creating non-lookup table: air_quality <br />
+Creating lookup table: geo_data <br />
+Creating lookup table: indicator <br />
+Tables created. <br />
+Tables created. <br />
+Tables created. <br />
+Inserting table data completed <br />
+Creating non-lookup table: air_quality <br />
+Creating lookup table: geo_data <br />
+Creating lookup table: indicator <br />
+Tables created. <br />
+Tables created. <br />
+Tables created. <br />
+Inserting table data completed <br />
+Creating non-lookup table: air_quality <br />
+Creating lookup table: geo_data <br />
+Creating lookup table: indicator <br />
+Tables created. <br />
+Tables created. <br />
+Tables created. <br />
+Inserting table data completed <br />
+Creating non-lookup table: air_quality <br />
+Creating lookup table: indicator <br />
+Creating lookup table: geo_data <br />
+Tables created. <br />
+Tables created. <br />
+Tables created. <br />
+Inserting table data completed <br />
+Creating non-lookup table: air_quality <br />
+Creating lookup table: geo_data <br />
+Creating lookup table: indicator <br />
+Tables created. <br />
+Tables created. <br />
+Tables created. <br />
+Inserting table data completed <br />

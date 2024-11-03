@@ -276,7 +276,8 @@ fn main() -> Result<()> {
             
             let _ = log_speed_tests(&format!("The Rust Speed test took: {:?} to complete.", duration));
             let _ = log_speed_tests(&format!("Rust speed test ended at server date and time: {:?}", get_server_time()));
-            
+            let _ = log_speed_tests("---------------------------------------------------------");
+
             println!("Rust took: {} microseconds to complete the load and save operation.", duration.as_micros());
             println!("End of Rust speed test. The result can be found in the test_speed folder.");
         }
